@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="한국 · 대만 · 일본 — 이헌준이 다녀온 여덟 도시의 기록.">
+  <title>여행 · 동아시아 여덟 도시</title>
+  <meta name="author" content="이헌준">
+
+  <!-- 카카오톡·슬랙 등에 링크를 붙였을 때 보이는 미리보기 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이헌준">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="여행 · 동아시아 여덟 도시">
+  <meta property="og:description" content="한국 · 대만 · 일본 — 이헌준이 다녀온 여덟 도시의 기록.">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 모바일 브라우저 주소창 색을 배경과 맞춘다 -->
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("hj:theme");
+        var light = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+      } catch (e) {}
+    })();
+  </script>
+
+  <!--
+     영문 폰트만 받아 온다. 한글은 각자 컴퓨터에 깔린 것을 쓴다.
+     preconnect 는 "이 주소에서 곧 뭘 받을 거니까 미리 길을 터 두라"는 뜻이다.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗺️</text></svg>">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand plain" href="index.html">
+        <span class="brand__mark">HJ</span>
+        <span>HEONJUN <span class="brand__sub">/ 이헌준</span></span>
+      </a>
+
+      <nav class="site-nav" data-nav aria-label="주요 메뉴">
+        <ul>
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="myProfile.html">Profile</a></li>
+          <li><a class="nav-link" href="myHoliday.html">Holiday</a></li>
+          <li><a class="nav-link" href="myClass.html">Class</a></li>
+          <li><a class="nav-link" href="myTrip.html">Trip</a></li>
+          <li><a class="nav-link" href="playground.html">Playground</a></li>
+          <li><a class="nav-link" href="signUp.html">Join</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="테마 전환">
+          <span class="theme-toggle__moon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container container--wide page">
+
+    <div class="page-head">
+      <p class="eyebrow">Trip</p>
+      <h1>지도에 찍힌 여덟 개의 점</h1>
+      <p class="lead">
+        서울에서 출발해 한국 · 대만 · 일본의 여덟 도시를 다녀왔습니다.
+        지도 위의 점이 <mark>지금까지 발이 닿은 곳</mark>입니다.
+        점을 누르면 그 도시의 기록으로 내려갑니다.
+      </p>
+    </div>
+
+    <main id="main">
+
+      <section class="section" aria-labelledby="map-h">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Map</p>
+            <h2 id="map-h">여행 경로</h2>
+          </div>
+          <div class="cluster">
+            <span class="chip">3개국</span>
+            <span class="chip">8개 도시</span>
+            <span class="chip"><span class="chip__dot"></span>2019 – 2025</span>
+          </div>
+        </div>
+
+        <!--
+           설명(role="img")은 그림인 캔버스에만 붙인다.
+           감싼 div 에 붙이면 그 안의 도시 버튼까지 "그림의 일부"로 묻혀서
+           키보드로는 닿는데 낭독기에는 안 읽히는 상태가 된다.
+        -->
+        <div class="map-stage reveal">
+          <canvas id="trip-map" role="img"
+                  aria-label="한국, 대만, 일본 지도에 경주·부산·제주도·강릉·오사카·교토·타이베이·가오슝이 표시되어 있습니다."></canvas>
+
+          <div class="map-stage__hint" aria-hidden="true">클릭 · 호버로 탐색</div>
+
+          <!-- 도시 바로가기 -->
+          <div class="map-stage__hud">
+            <button class="chip" type="button" data-trip-jump="gyeongju">경주</button>
+            <button class="chip" type="button" data-trip-jump="busan">부산</button>
+            <button class="chip" type="button" data-trip-jump="jeju">제주도</button>
+            <button class="chip" type="button" data-trip-jump="gangneung">강릉</button>
+            <button class="chip" type="button" data-trip-jump="osaka">오사카</button>
+            <button class="chip" type="button" data-trip-jump="kyoto">교토</button>
+            <button class="chip" type="button" data-trip-jump="taipei">타이베이</button>
+            <button class="chip" type="button" data-trip-jump="kaohsiung">가오슝</button>
+          </div>
+
+          <div class="map-tooltip" id="map-tooltip" role="status" aria-live="polite"></div>
+        </div>
+
+        <p class="hint" style="margin-top:.9rem">
+          아직 색이 없는 지역은 가 보지 못한 곳입니다. 천천히 채워 갈 생각입니다.
+        </p>
+      </section>
+
+      <section class="section" aria-labelledby="cards-h">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Travel log</p>
+            <h2 id="cards-h">도시별 기록</h2>
+          </div>
+          <span class="chip">최신순이 아니라 다녀온 순</span>
+        </div>
+
+        <div class="trip-grid">
+
+          <!-- ---------- 경주 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="gyeongju" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇰🇷</span> 경주</span>
+              <img src="../media/trip/gyeongju.jpg" alt="경주 동궁과 월지의 야경" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/gyeongju.jpg">
+                <span class="media-ph__icon" aria-hidden="true">🏯</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">경주 <small>2019</small></h3>
+              <p class="trip-card__text">
+                자전거를 빌려 온종일 돌았습니다. 도시 전체가 유적이라
+                길을 잃어도 어딘가 볼 게 있었습니다. 야경은 동궁과 월지가 압도적.
+              </p>
+              <div class="trip-card__meta">
+                <span>천년 고도 · 2박</span>
+                <span class="trip-card__stars" aria-label="별 4개">★★★★☆</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ---------- 부산 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="busan" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇰🇷</span> 부산</span>
+              <img src="../media/trip/busan.jpg" alt="부산 광안대교의 밤 풍경" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/busan.jpg">
+                <span class="media-ph__icon" aria-hidden="true">🌉</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">부산 <small>2021</small></h3>
+              <p class="trip-card__text">
+                바다를 보러 갔는데 결국 먹는 데 시간을 다 썼습니다.
+                광안리에서 본 다리 조명이 아직도 제일 선명하게 남아 있습니다.
+              </p>
+              <div class="trip-card__meta">
+                <span>바다와 야경 · 3박</span>
+                <span class="trip-card__stars" aria-label="별 5개">★★★★★</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ---------- 제주도 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="jeju" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇰🇷</span> 제주</span>
+              <img src="../media/trip/jeju.jpg" alt="제주도 오름에서 내려다본 풍경" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/jeju.jpg">
+                <span class="media-ph__icon" aria-hidden="true">🌋</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">제주도 <small>2022</small></h3>
+              <p class="trip-card__text">
+                렌터카 없이 버스로만 다녀 본 제주. 시간은 두 배 걸렸지만
+                오름 하나를 천천히 올라간 그 오후가 여행의 전부였습니다.
+              </p>
+              <div class="trip-card__meta">
+                <span>화산섬 · 4박</span>
+                <span class="trip-card__stars" aria-label="별 5개">★★★★★</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ---------- 강릉 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="gangneung" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇰🇷</span> 강릉</span>
+              <img src="../media/trip/gangneung.jpg" alt="강릉 안목해변의 커피 거리" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/gangneung.jpg">
+                <span class="media-ph__icon" aria-hidden="true">☕</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">강릉 <small>2023</small></h3>
+              <p class="trip-card__text">
+                KTX 두 시간이면 동해가 나온다는 게 아직도 이상합니다.
+                안목해변에서 커피를 들고 파도만 한 시간 봤습니다.
+              </p>
+              <div class="trip-card__meta">
+                <span>동해와 커피 · 1박</span>
+                <span class="trip-card__stars" aria-label="별 4개">★★★★☆</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ---------- 오사카 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="osaka" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇯🇵</span> 오사카</span>
+              <img src="../media/trip/osaka.jpg" alt="오사카 도톤보리의 간판들" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/osaka.jpg">
+                <span class="media-ph__icon" aria-hidden="true">🍜</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">오사카 <small>2024</small></h3>
+              <p class="trip-card__text">
+                첫 끼로 라멘을 먹었고 마지막 끼도 라멘이었습니다.
+                도톤보리의 간판 불빛은 사진으로는 절반도 안 담깁니다.
+              </p>
+              <div class="trip-card__meta">
+                <span>먹부림의 성지 · 3박</span>
+                <span class="trip-card__stars" aria-label="별 5개">★★★★★</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ---------- 교토 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="kyoto" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇯🇵</span> 교토</span>
+              <img src="../media/trip/kyoto.jpg" alt="교토 후시미이나리의 도리이 터널" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/kyoto.jpg">
+                <span class="media-ph__icon" aria-hidden="true">⛩️</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">교토 <small>2024</small></h3>
+              <p class="trip-card__text">
+                오사카에서 전철로 넘어간 하루. 후시미이나리의 도리이를
+                끝까지 올라가 봤는데, 위로 갈수록 사람이 줄어 조용해집니다.
+              </p>
+              <div class="trip-card__meta">
+                <span>천 개의 도리이 · 당일</span>
+                <span class="trip-card__stars" aria-label="별 4개">★★★★☆</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ---------- 타이베이 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="taipei" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇹🇼</span> 타이베이</span>
+              <img src="../media/trip/taipei.jpg" alt="타이베이 야시장의 밤 거리" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/taipei.jpg">
+                <span class="media-ph__icon" aria-hidden="true">🏮</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">타이베이 <small>2025</small></h3>
+              <p class="trip-card__text">
+                밤마다 야시장을 갔습니다. 습한 공기와 향신료 냄새가 섞인
+                그 거리 특유의 온도가 있습니다. 온천도 도시 안에 있습니다.
+              </p>
+              <div class="trip-card__meta">
+                <span>야시장과 온천 · 4박</span>
+                <span class="trip-card__stars" aria-label="별 5개">★★★★★</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- ---------- 가오슝 ---------- -->
+          <article class="trip-card tilt reveal" data-trip="kaohsiung" data-tilt="5">
+            <div class="trip-card__media">
+              <span class="trip-card__flag"><span aria-hidden="true">🇹🇼</span> 가오슝</span>
+              <img src="../media/trip/kaohsiung.jpg" alt="가오슝 항구의 노을" loading="lazy" data-fallback>
+              <div class="media-ph" style="display:none" title="media/trip/kaohsiung.jpg">
+                <span class="media-ph__icon" aria-hidden="true">⛴️</span>
+                <span>사진 준비 중</span>
+              </div>
+            </div>
+            <div class="trip-card__body">
+              <h3 class="trip-card__title">가오슝 <small>2025</small></h3>
+              <p class="trip-card__text">
+                타이베이에서 고속철로 내려간 남쪽 도시. 훨씬 느리고 덜 붐빕니다.
+                항구에서 본 노을 색이 여행 전체에서 제일 좋았습니다.
+              </p>
+              <div class="trip-card__meta">
+                <span>남국의 항구 · 2박</span>
+                <span class="trip-card__stars" aria-label="별 4개">★★★★☆</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="media-h">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Multimedia</p>
+            <h2 id="media-h">영상과 소리로 남은 것</h2>
+          </div>
+          <span class="chip">브이로그 · 현장음</span>
+        </div>
+
+        <div class="page-grid" style="grid-template-columns:minmax(0,1.35fr) minmax(0,1fr)">
+
+          <!-- ---------- 영상 ---------- -->
+          <div class="card reveal">
+            <span class="card__label">Video · 여행 브이로그</span>
+
+            <div class="media-frame">
+              <video controls preload="metadata" poster="../media/trip/video-poster.jpg">
+                <source src="../media/video/trip.mp4" type="video/mp4">
+                <source src="../media/video/trip.webm" type="video/webm">
+                이 브라우저는 video 태그를 지원하지 않습니다.
+                <a href="../media/video/trip.mp4">영상을 직접 내려받아</a> 보실 수 있습니다.
+              </video>
+
+              <div class="media-ph" data-video-ph>
+                <span class="media-ph__icon" aria-hidden="true">🎬</span>
+                <span>영상 준비 중</span>
+              </div>
+            </div>
+
+            <p class="media-caption">
+              여덟 도시에서 찍은 조각들을 3분으로 이어붙인 영상. 자막은 없습니다.
+            </p>
+          </div>
+
+          <!-- ---------- 소리 ---------- -->
+          <div class="card reveal">
+            <span class="card__label">Audio · 그때 듣던 소리</span>
+
+            <div class="media-frame media-frame--audio">
+              <audio controls preload="none">
+                <source src="../media/audio/trip-bgm.mp3" type="audio/mpeg">
+                <source src="../media/audio/trip-bgm.ogg" type="audio/ogg">
+                이 브라우저는 audio 태그를 지원하지 않습니다.
+                <a href="../media/audio/trip-bgm.mp3">오디오를 직접 내려받기</a>.
+              </audio>
+            </div>
+
+            <p class="media-caption">
+              야시장의 소음이 섞인 현장 녹음. 이어폰으로 들으면 훨씬 낫습니다.
+            </p>
+
+            <ul class="list-fancy" style="margin-top:1.1rem; font-size:var(--fs-sm)">
+              <li>타이베이 스린 야시장 — 사람 소리와 철판 소리</li>
+              <li>강릉 안목해변 — 파도, 그리고 갈매기</li>
+              <li>교토 후시미이나리 — 자갈 밟는 발소리</li>
+            </ul>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- 다음 목표 -->
+      <section class="section" aria-labelledby="next-h">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Wishlist</p>
+            <h2 id="next-h">아직 비어 있는 칸</h2>
+          </div>
+        </div>
+
+        <div class="card card--gradient card--pad-lg reveal">
+          <p class="lead" style="margin-bottom:1.2rem">
+            지도를 펼쳐 놓고 보니 채워지지 않은 곳이 더 눈에 들어옵니다.
+            다음 순서는 대략 이렇습니다.
+          </p>
+          <ol class="list-check">
+            <li><span class="todo-name">후쿠오카</span> — 가장 가까운 미방문 도시. 라멘 때문입니다.</li>
+            <li><span class="todo-name">타이중 · 화롄</span> — 대만 동쪽 해안선을 기차로 따라가 보기.</li>
+            <li><span class="todo-name">삿포로</span> — 지도 맨 위 칸이 아직 비어 있습니다.</li>
+            <li><span class="todo-name">여수 · 통영</span> — 국내 남해안 쪽도 사실 거의 안 갔습니다.</li>
+          </ol>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__inner">
+      <span>© 2026 이헌준</span>
+      <span class="mono">여행</span>
+    </div>
+  </footer>
+
+  <script src="../script/core/store.js"></script>
+  <script src="../script/core/ui.js"></script>
+  <script src="../script/tripMap.js"></script>
+
+  <script>
+    /* 영상 소스가 없을 때만 플레이스홀더를 남겨 둔다 (있으면 감춤) */
+    (function () {
+      var video = document.querySelector(".media-frame video");
+      var ph = document.querySelector("[data-video-ph]");
+      if (!video || !ph) return;
+
+      function hidePh() { ph.style.display = "none"; }
+      video.addEventListener("loadedmetadata", hidePh);
+      video.addEventListener("canplay", hidePh);
+
+      /* 모든 <source> 가 실패하면 video 자체에서 error 가 올라온다 */
+      video.addEventListener("error", function () { ph.style.display = "grid"; });
+    })();
+  </script>
+</body>
+</html>

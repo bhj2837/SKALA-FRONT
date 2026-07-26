@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="이헌준의 주간 시간표 — 요즘 월요일부터 금요일까지 이렇게 보냅니다.">
+  <title>주간 시간표 · 이헌준</title>
+  <meta name="author" content="이헌준">
+
+  <!-- 카카오톡·슬랙 등에 링크를 붙였을 때 보이는 미리보기 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이헌준">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="주간 시간표 · 이헌준">
+  <meta property="og:description" content="이헌준의 주간 시간표 — 요즘 월요일부터 금요일까지 이렇게 보냅니다.">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 모바일 브라우저 주소창 색을 배경과 맞춘다 -->
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("hj:theme");
+        var light = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+      } catch (e) {}
+    })();
+  </script>
+
+  <!--
+     영문 폰트만 받아 온다. 한글은 각자 컴퓨터에 깔린 것을 쓴다.
+     preconnect 는 "이 주소에서 곧 뭘 받을 거니까 미리 길을 터 두라"는 뜻이다.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🗓️</text></svg>">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand plain" href="index.html">
+        <span class="brand__mark">HJ</span>
+        <span>HEONJUN <span class="brand__sub">/ 이헌준</span></span>
+      </a>
+
+      <nav class="site-nav" data-nav aria-label="주요 메뉴">
+        <ul>
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="myProfile.html">Profile</a></li>
+          <li><a class="nav-link" href="myHoliday.html">Holiday</a></li>
+          <li><a class="nav-link" href="myClass.html">Class</a></li>
+          <li><a class="nav-link" href="myTrip.html">Trip</a></li>
+          <li><a class="nav-link" href="playground.html">Playground</a></li>
+          <li><a class="nav-link" href="signUp.html">Join</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="테마 전환">
+          <span class="theme-toggle__moon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container container--wide page">
+
+    <div class="page-head">
+      <p class="eyebrow">Class</p>
+      <h1>요즘의 월요일부터 금요일</h1>
+      <p class="lead">
+        주말은 <a href="myHoliday.html">저쪽</a>처럼 흘러가지만, 평일은 꽤 촘촘합니다.
+        색이 있는 칸은 수업, 사선 무늬는 점심, 회색은 남아서 알아서 하는 시간입니다.
+        오늘 요일은 표에서 자동으로 표시됩니다.
+      </p>
+    </div>
+
+    <main id="main">
+
+      <section class="section" aria-labelledby="tt-h">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Timetable</p>
+            <h2 id="tt-h">SKALA 프론트엔드 트랙 · 5주차</h2>
+          </div>
+          <div class="cluster">
+            <span class="chip">주 <b>32</b>시간</span>
+            <span class="chip chip--live"><span class="chip__dot"></span><span data-today-label>오늘</span></span>
+          </div>
+        </div>
+
+        <div class="table-wrap reveal" data-timetable>
+          <table>
+            <caption>
+              2026년 7월 · 4주 · 09:00 ~ 18:00 · 강의실 3F-B / 온라인 병행
+            </caption>
+
+            <!-- 시간 + 요일 -->
+            <thead>
+              <tr>
+                <th scope="col">시간</th>
+                <th scope="col" data-day="1">월</th>
+                <th scope="col" data-day="2">화</th>
+                <th scope="col" data-day="3">수</th>
+                <th scope="col" data-day="4">목</th>
+                <th scope="col" data-day="5">금</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <!-- 09:00 -->
+              <tr>
+                <th scope="row">09:00<br>10:00</th>
+                <td class="slot slot--core" rowspan="2">
+                  HTML 구조 설계
+                  <small>시맨틱 마크업 · 문서 개요</small>
+                </td>
+                <td class="slot slot--js" rowspan="2">
+                  JavaScript 기본 문법
+                  <small>변수 · 조건 · 반복</small>
+                </td>
+                <td class="slot slot--css" rowspan="3">
+                  CSS 레이아웃 심화
+                  <small>Flexbox → Grid (3시간 연강)</small>
+                </td>
+                <td class="slot slot--js" rowspan="2">
+                  비동기와 API
+                  <small>Promise · async / await</small>
+                </td>
+                <td class="slot slot--proj" rowspan="3">
+                  팀 프로젝트
+                  <small>기획 · 역할 분담 (3시간 연강)</small>
+                </td>
+              </tr>
+
+              <!-- 10:00 -->
+              <tr>
+                <th scope="row">10:00</th>
+              </tr>
+
+              <!-- 11:00 -->
+              <tr>
+                <th scope="row">11:00<br>12:00</th>
+                <td class="slot slot--core">
+                  시맨틱 태그 실습
+                  <small>nav · main · aside</small>
+                </td>
+                <td class="slot slot--free">
+                  알고리즘 스터디
+                  <small>자율 참여</small>
+                </td>
+                <td class="slot slot--core">
+                  코드 리뷰
+                  <small>서로 짠 것 읽기</small>
+                </td>
+              </tr>
+
+              <!-- 12:00 : 점심시간 -->
+              <tr>
+                <th scope="row">12:00<br>13:00</th>
+                <td class="slot slot--lunch" colspan="5">L U N C H&nbsp;&nbsp;B R E A K</td>
+              </tr>
+
+              <!-- 13:00 -->
+              <tr>
+                <th scope="row">13:00<br>14:00</th>
+                <td class="slot slot--css" rowspan="2">
+                  선택자와 박스 모델
+                  <small>margin · border · padding</small>
+                </td>
+                <td class="slot slot--js" rowspan="2">
+                  DOM 조작 실습
+                  <small>이벤트 · innerHTML</small>
+                </td>
+                <td class="slot slot--css" rowspan="2">
+                  반응형 웹 디자인
+                  <small>미디어 쿼리 786px</small>
+                </td>
+                <td class="slot slot--js" rowspan="3">
+                  fetch 실습
+                  <small>실시간 날씨 위젯 만들기 (3시간)</small>
+                </td>
+                <td class="slot slot--proj" rowspan="3">
+                  팀 프로젝트
+                  <small>구현 · 페어 프로그래밍 (3시간)</small>
+                </td>
+              </tr>
+
+              <!-- 14:00 -->
+              <tr>
+                <th scope="row">14:00</th>
+              </tr>
+
+              <!-- 15:00 -->
+              <tr>
+                <th scope="row">15:00<br>16:00</th>
+                <td class="slot slot--free">
+                  개인 실습
+                  <small>밀린 것 정리</small>
+                </td>
+                <td class="slot slot--free">
+                  미니 만들기
+                  <small>숫자 맞히기 게임</small>
+                </td>
+                <td class="slot slot--core">
+                  접근성 점검
+                  <small>키보드 · 명암비</small>
+                </td>
+              </tr>
+
+              <!-- 16:00 -->
+              <tr>
+                <th scope="row">16:00<br>17:00</th>
+                <td class="slot slot--core" rowspan="2">
+                  현직자 특강
+                  <small>격주 · 온라인 (2시간)</small>
+                </td>
+                <td class="slot slot--proj" rowspan="2">
+                  Git 협업 실습
+                  <small>브랜치 · PR 리뷰 (2시간)</small>
+                </td>
+                <td class="slot slot--proj" rowspan="2">
+                  개인 프로젝트
+                  <small>포트폴리오 작업 (2시간)</small>
+                </td>
+                <td class="slot slot--free">
+                  데일리 회고
+                  <small>오늘 배운 것 정리</small>
+                </td>
+                <td class="slot slot--proj" rowspan="2">
+                  주간 발표
+                  <small>팀별 데모 + 피드백 (2시간)</small>
+                </td>
+              </tr>
+
+              <!-- 17:00 -->
+              <tr>
+                <th scope="row">17:00</th>
+                <td class="slot slot--free">
+                  자유 실습
+                  <small>남아서 하는 사람만</small>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 색상 범례 -->
+        <div class="legend-row reveal">
+          <span><i style="background:var(--c1)"></i> HTML · 접근성</span>
+          <span><i style="background:var(--c2)"></i> CSS · 레이아웃</span>
+          <span><i style="background:var(--c3)"></i> JavaScript</span>
+          <span><i style="background:var(--c-ok)"></i> 프로젝트 · 협업</span>
+          <span><i style="background:var(--surface-2); border:1px solid var(--line)"></i> 자율 실습</span>
+          <span><i style="background:repeating-linear-gradient(45deg,var(--surface) 0 4px,transparent 4px 8px); border:1px solid var(--line)"></i> 점심시간</span>
+        </div>
+      </section>
+
+      <section class="section" aria-labelledby="how-h">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">This week</p>
+            <h2 id="how-h">이번 주 메모</h2>
+          </div>
+        </div>
+
+        <ul class="hub-grid reveal-stagger">
+          <li style="flex:1 1 300px">
+            <div class="card" style="width:100%">
+              <span class="card__label">월 · 화</span>
+              <h3 class="mini-h">아침이 제일 버팁니다</h3>
+              <p class="t-sm" style="color:var(--text-dim); margin:0">
+                주말에 늦게 자던 리듬이 남아 있어서 월요일 9시가 한 주 중 가장 힘듭니다.
+                대신 오후로 갈수록 집중이 붙는 편이라, 무거운 건 되도록 뒤로 미룹니다.
+              </p>
+            </div>
+          </li>
+          <li style="flex:1 1 300px">
+            <div class="card" style="width:100%">
+              <span class="card__label">수</span>
+              <h3 class="mini-h">가장 긴 하루</h3>
+              <p class="t-sm" style="color:var(--text-dim); margin:0">
+                오전이 통째로 한 덩어리라 시작하면 점심까지 쉬지 않고 갑니다.
+                끝나고 나면 머리가 비어서, 이날 저녁은 대체로 아무 계획도 세우지 않습니다.
+              </p>
+            </div>
+          </li>
+          <li style="flex:1 1 300px">
+            <div class="card" style="width:100%">
+              <span class="card__label">금</span>
+              <h3 class="mini-h">발표하고 흩어지기</h3>
+              <p class="t-sm" style="color:var(--text-dim); margin:0">
+                금요일은 하루 종일 팀으로 붙어 있다가 오후에 데모를 합니다.
+                끝나는 순간부터 <a href="myHoliday.html">쉬는 날</a>이 시작됩니다.
+              </p>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- 과목별 비중 -->
+      <section class="section" aria-labelledby="ratio-h">
+        <div class="section__head reveal">
+          <div>
+            <p class="eyebrow">Weekly load</p>
+            <h2 id="ratio-h">과목별 시간 비중</h2>
+          </div>
+          <span class="chip">총 32시간 기준</span>
+        </div>
+
+        <div class="card card--pad-lg reveal">
+          <ul class="score-list">
+            <li>
+              <span>프로젝트</span>
+              <span class="bar" aria-hidden="true"><span class="bar__fill" style="width:78%"></span></span>
+              <b>10h</b>
+            </li>
+            <li>
+              <span>JavaScript</span>
+              <span class="bar" aria-hidden="true"><span class="bar__fill" style="width:70%"></span></span>
+              <b>9h</b>
+            </li>
+            <li>
+              <span>CSS</span>
+              <span class="bar" aria-hidden="true"><span class="bar__fill" style="width:54%"></span></span>
+              <b>7h</b>
+            </li>
+            <li>
+              <span>HTML · 접근성</span>
+              <span class="bar" aria-hidden="true"><span class="bar__fill" style="width:31%"></span></span>
+              <b>4h</b>
+            </li>
+            <li>
+              <span>자율 실습</span>
+              <span class="bar" aria-hidden="true"><span class="bar__fill" style="width:16%"></span></span>
+              <b>2h</b>
+            </li>
+          </ul>
+
+          <div class="note note--info" style="margin-top:1.6rem">
+            <span class="note__icon" aria-hidden="true">📌</span>
+            <span>
+              <strong>실제로 느끼는 체감 비중은 다릅니다.</strong><br>
+              표에는 JavaScript가 9시간이라고 적혀 있지만, 집에 와서 다시 붙잡는 시간까지 더하면
+              사실상 절반 이상을 여기에 씁니다.
+            </span>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__inner">
+      <span>© 2026 이헌준</span>
+      <span class="mono">시간표</span>
+    </div>
+  </footer>
+
+  <script src="../script/core/store.js"></script>
+  <script src="../script/core/ui.js"></script>
+
+  <script>
+    /* 오늘 요일 열을 강조 — 표를 읽는 사람에게 현재 위치를 알려준다 */
+    (function () {
+      var DAYS = ["일요일", "월요일", "화요일", "수요일", "목요일", "금요일", "토요일"];
+      var today = new Date().getDay();          // 0(일) ~ 6(토)
+      var label = document.querySelector("[data-today-label]");
+
+      if (label) {
+        label.textContent = (today >= 1 && today <= 5)
+          ? "오늘은 " + DAYS[today]
+          : "주말 — 수업 없음";
+      }
+
+      var th = document.querySelector('thead th[data-day="' + today + '"]');
+      if (th) {
+        th.style.color = "var(--c1)";
+        th.style.background = "color-mix(in srgb, var(--c1) 12%, var(--surface-solid))";
+        th.title = "오늘";
+      }
+    })();
+  </script>
+</body>
+</html>

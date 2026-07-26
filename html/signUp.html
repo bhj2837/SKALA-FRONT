@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="이헌준 홈페이지 회원가입 — 아이디 만들고, 약관 읽는 척하고, 가입 버튼 누르면 끝.">
+  <title>회원가입 · 이헌준</title>
+  <meta name="author" content="이헌준">
+
+  <!-- 카카오톡·슬랙 등에 링크를 붙였을 때 보이는 미리보기 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이헌준">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="회원가입 · 이헌준">
+  <meta property="og:description" content="이헌준 홈페이지 회원가입 — 아이디 만들고, 약관 읽는 척하고, 가입 버튼 누르면 끝.">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 모바일 브라우저 주소창 색을 배경과 맞춘다 -->
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("hj:theme");
+        var light = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+      } catch (e) {}
+    })();
+  </script>
+
+  <!--
+     영문 폰트만 받아 온다. 한글은 각자 컴퓨터에 깔린 것을 쓴다.
+     preconnect 는 "이 주소에서 곧 뭘 받을 거니까 미리 길을 터 두라"는 뜻이다.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✍️</text></svg>">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand plain" href="index.html">
+        <span class="brand__mark">HJ</span>
+        <span>HEONJUN <span class="brand__sub">/ 이헌준</span></span>
+      </a>
+
+      <nav class="site-nav" data-nav aria-label="주요 메뉴">
+        <ul>
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="myProfile.html">Profile</a></li>
+          <li><a class="nav-link" href="myHoliday.html">Holiday</a></li>
+          <li><a class="nav-link" href="myClass.html">Class</a></li>
+          <li><a class="nav-link" href="myTrip.html">Trip</a></li>
+          <li><a class="nav-link" href="playground.html">Playground</a></li>
+          <li><a class="nav-link" href="signUp.html">Join</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="테마 전환">
+          <span class="theme-toggle__moon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container container--wide page">
+
+    <div class="page-head reveal">
+      <p class="eyebrow">Sign up</p>
+      <h1>회원가입</h1>
+      <p class="lead">
+        빈칸 몇 개만 채우면 끝납니다.
+        <mark>서버가 없어서 아무 데도 저장되지 않지만</mark>
+        검사만큼은 진짜 사이트처럼 깐깐하게 합니다.
+      </p>
+    </div>
+
+    <div class="page-grid">
+
+      <!-- MAIN — 회원가입 폼 -->
+      <main id="main">
+
+        <!-- 진행률 바 : 필수 항목이 채워질수록 차오른다 -->
+        <div class="form-progress reveal" aria-hidden="true">
+          <span class="mono" data-form-step>0 / 7 항목</span>
+          <div class="bar"><span class="bar__fill" data-form-bar style="width:0%"></span></div>
+          <span class="mono" data-form-pct>0%</span>
+        </div>
+
+        <form id="signup-form"
+              action="signUpResult.html"
+              method="get"
+              autocomplete="off"
+              novalidate>
+
+          <!--
+             위 진행률 바는 눈으로 보는 것이다. 화면을 못 보는 사람에게는
+             항목 수가 바뀔 때만 짧게 읽어 준다. (signUpForm.js 가 채운다)
+          -->
+          <p class="sr-only" data-form-say role="status" aria-live="polite"></p>
+
+          <!-- ---------- fieldset 1 : 계정 ---------- -->
+          <fieldset class="reveal" data-step="1">
+            <legend><span class="legend__no">01</span> 계정</legend>
+
+            <div class="field">
+              <label for="userid">아이디 <span class="req" aria-hidden="true">*</span></label>
+              <div class="field-attach">
+                <input type="text" id="userid" name="userid"
+                       placeholder="hunjun"
+                       minlength="4" maxlength="16"
+                       inputmode="latin"
+                       required>
+                <button class="btn btn--ghost btn--sm" type="button" data-check-id>중복확인</button>
+              </div>
+              <span class="hint">영문 소문자와 숫자로 4~16자. 나중에 바꿀 수 없습니다(라고 치겠습니다).</span>
+              <span class="field-msg" data-msg="userid" role="status"></span>
+            </div>
+
+            <div class="field-row">
+              <!--
+                 비밀번호에는 name 을 두지 않는다.
+                 이 폼은 GET 으로 보내지기 때문에, name 이 있으면 주소창에 그대로 남는다.
+              -->
+              <div class="field">
+                <label for="password">비밀번호 <span class="req" aria-hidden="true">*</span></label>
+                <input type="password" id="password"
+                       placeholder="8자 이상"
+                       minlength="8"
+                       autocomplete="new-password"
+                       required>
+                <div class="bar" aria-hidden="true" style="margin-top:.55rem">
+                  <span class="bar__fill" data-pw-bar style="width:0%"></span>
+                </div>
+                <span class="hint">보안 강도 <b data-pw-label>—</b></span>
+              </div>
+
+              <div class="field">
+                <label for="password2">비밀번호 확인 <span class="req" aria-hidden="true">*</span></label>
+                <input type="password" id="password2"
+                       placeholder="한 번 더"
+                       autocomplete="new-password"
+                       required>
+                <span class="field-msg" data-msg="password2" role="status"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ---------- fieldset 2 : 회원 정보 ---------- -->
+          <fieldset class="reveal" data-step="2">
+            <legend><span class="legend__no">02</span> 회원 정보</legend>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="name">이름 <span class="req" aria-hidden="true">*</span></label>
+                <input type="text" id="name" name="name"
+                       placeholder="이헌준"
+                       minlength="2" maxlength="20"
+                       required>
+                <span class="hint">본명이 아니어도 뭐라 하지 않습니다.</span>
+              </div>
+
+              <div class="field">
+                <label for="nickname">닉네임</label>
+                <input type="text" id="nickname" name="nickname"
+                       placeholder="hunjun.dev"
+                       maxlength="20">
+                <span class="hint">비워 두면 이름을 그대로 씁니다.</span>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="email">이메일 <span class="req" aria-hidden="true">*</span></label>
+                <input type="email" id="email" name="email"
+                       placeholder="you@example.com"
+                       required>
+                <span class="hint">비밀번호를 잊었을 때 쓰는 유일한 밧줄입니다.</span>
+              </div>
+
+              <div class="field">
+                <label for="phone">휴대폰</label>
+                <input type="tel" id="phone" name="phone"
+                       placeholder="010-0000-0000"
+                       pattern="[0-9\-]{9,13}"
+                       inputmode="numeric">
+                <span class="hint">숫자와 하이픈만.</span>
+              </div>
+            </div>
+
+            <div class="field-row">
+              <div class="field">
+                <label for="birth">생년월일</label>
+                <input type="date" id="birth" name="birth">
+                <span class="hint">생일에 아무 일도 일어나지 않습니다.</span>
+              </div>
+
+              <div class="field">
+                <label id="gender-label">성별</label>
+                <div class="choice-grid" role="radiogroup" aria-labelledby="gender-label">
+                  <label class="choice">
+                    <input type="radio" name="gender" value="남성">
+                    <span class="choice__box" aria-hidden="true"></span>
+                    <span>남성</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="gender" value="여성">
+                    <span class="choice__box" aria-hidden="true"></span>
+                    <span>여성</span>
+                  </label>
+                  <label class="choice">
+                    <input type="radio" name="gender" value="비공개" checked>
+                    <span class="choice__box" aria-hidden="true"></span>
+                    <span>안 밝힘</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <!-- ---------- fieldset 3 : 추가 정보 ---------- -->
+          <fieldset class="reveal" data-step="3">
+            <legend><span class="legend__no">03</span> 추가 정보 <span class="muted">(선택)</span></legend>
+
+            <div class="field">
+              <label id="interest-label">관심 있는 것 <span class="muted">(복수 선택)</span></label>
+              <div class="choice-grid" role="group" aria-labelledby="interest-label">
+                <label class="choice">
+                  <input type="checkbox" name="interest" value="개발" checked>
+                  <span class="choice__box" aria-hidden="true"></span>
+                  <span>개발</span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interest" value="게임" checked>
+                  <span class="choice__box" aria-hidden="true"></span>
+                  <span>게임</span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interest" value="여행">
+                  <span class="choice__box" aria-hidden="true"></span>
+                  <span>여행</span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interest" value="음악">
+                  <span class="choice__box" aria-hidden="true"></span>
+                  <span>음악</span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interest" value="사진">
+                  <span class="choice__box" aria-hidden="true"></span>
+                  <span>사진</span>
+                </label>
+                <label class="choice">
+                  <input type="checkbox" name="interest" value="먹는것">
+                  <span class="choice__box" aria-hidden="true"></span>
+                  <span>먹는 것</span>
+                </label>
+              </div>
+              <span class="hint">나중에 뭘 보여 줄지 고를 때 참고합니다.</span>
+            </div>
+
+            <div class="field">
+              <label for="from">어떻게 알고 오셨나요</label>
+              <select id="from" name="from">
+                <option value="">— 고르지 않아도 됩니다 —</option>
+                <option value="검색">검색하다가</option>
+                <option value="지인">아는 사람이 알려줘서</option>
+                <option value="SNS">SNS에서 보고</option>
+                <option value="수박게임">수박게임 하러</option>
+                <option value="표류" selected>그냥 흘러들어왔습니다</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label for="intro">한 줄 소개</label>
+              <textarea id="intro" name="intro"
+                        placeholder="예) 늦게 자고 늦게 일어나는 사람입니다."
+                        maxlength="100"></textarea>
+              <span class="hint"><b data-intro-count>0</b> / 100자 — 비워 두셔도 됩니다.</span>
+            </div>
+          </fieldset>
+
+          <!-- ---------- fieldset 4 : 약관 ---------- -->
+          <fieldset class="reveal" data-step="4">
+            <legend><span class="legend__no">04</span> 약관 동의</legend>
+
+            <div class="terms">
+              <div class="terms__all">
+                <label class="choice">
+                  <input type="checkbox" data-agree-all>
+                  <span class="choice__box" aria-hidden="true"></span>
+                  <span>전체 동의합니다</span>
+                </label>
+              </div>
+
+              <div class="terms__list">
+                <div class="terms__row">
+                  <label class="choice">
+                    <input type="checkbox" name="terms" value="이용약관" data-agree required>
+                    <span class="choice__box" aria-hidden="true"></span>
+                    <span>이용약관 동의 <span class="muted">(필수)</span></span>
+                  </label>
+                  <button class="terms__view" type="button" data-modal-open="modal-terms">보기</button>
+                </div>
+
+                <div class="terms__row">
+                  <label class="choice">
+                    <input type="checkbox" name="privacy" value="개인정보" data-agree required>
+                    <span class="choice__box" aria-hidden="true"></span>
+                    <span>개인정보 수집·이용 동의 <span class="muted">(필수)</span></span>
+                  </label>
+                  <button class="terms__view" type="button" data-modal-open="modal-privacy">보기</button>
+                </div>
+
+                <div class="terms__row">
+                  <label class="choice">
+                    <input type="checkbox" name="age" value="만14세이상" data-agree required>
+                    <span class="choice__box" aria-hidden="true"></span>
+                    <span>만 14세 이상입니다 <span class="muted">(필수)</span></span>
+                  </label>
+                </div>
+
+                <div class="terms__row">
+                  <label class="choice">
+                    <input type="checkbox" name="marketing" value="수신동의">
+                    <span class="choice__box" aria-hidden="true"></span>
+                    <span>새 글·새 게임 소식 받기 <span class="muted">(선택)</span></span>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-actions reveal">
+            <input type="submit" value="가입하기">
+            <input type="reset" value="다시 입력">
+            <button class="btn btn--ghost" type="button" data-form-demo>
+              <span class="btn__icon" aria-hidden="true">🪄</span> 예시값 채우기
+            </button>
+          </div>
+
+          <p class="hint" style="margin-top:.9rem">
+            누르면 바로 가입 완료 화면으로 넘어갑니다. 비밀번호는 보내지 않습니다.
+          </p>
+        </form>
+      </main>
+
+      <!-- ASIDE — 가입 안내 -->
+      <aside class="sidebar" aria-label="가입 안내">
+
+        <!-- 필수 항목 체크리스트 -->
+        <section class="widget" aria-labelledby="valid-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="valid-h">
+              <span aria-hidden="true">✅</span> 필수 항목
+            </h2>
+            <span class="chip" data-valid-count>0 / 7</span>
+          </div>
+
+          <ul class="list-check" data-valid-list>
+            <li data-check="userid">아이디 4자 이상</li>
+            <li data-check="unique">아이디 중복확인</li>
+            <li data-check="password">비밀번호 8자 이상</li>
+            <li data-check="password2">비밀번호 확인 일치</li>
+            <li data-check="name">이름 2자 이상</li>
+            <li data-check="email">이메일 형식</li>
+            <li data-check="agree">필수 약관 3개</li>
+          </ul>
+
+          <p class="hint">
+            일곱 칸이 다 채워지면 가입 버튼이 통과됩니다.
+          </p>
+        </section>
+
+        <!-- 비밀번호 안내 -->
+        <section class="widget" aria-labelledby="pw-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="pw-h"><span aria-hidden="true">🔒</span> 비밀번호 만들기</h2>
+          </div>
+          <ul class="list-fancy t-sm">
+            <li>8자 이상 — 길수록 강도 막대가 잘 찹니다</li>
+            <li>영문 대·소문자, 숫자, 특수문자를 섞으면 가산점</li>
+            <li><code>1234</code>, <code>password</code> 같은 건 그만두는 게 좋습니다</li>
+            <li>다른 사이트에서 쓰는 진짜 비밀번호는 넣지 마세요</li>
+          </ul>
+        </section>
+
+        <div class="note note--info">
+          <span class="note__icon" aria-hidden="true">💬</span>
+          <span>
+            <strong>솔직히 말하면</strong><br>
+            이 사이트에는 서버도 데이터베이스도 없습니다.
+            입력한 값은 다음 화면에 한 번 보여 주고 그걸로 끝입니다.
+            그래서 비밀번호는 아예 전송하지 않습니다.
+          </span>
+        </div>
+
+        <div class="note note--warn">
+          <span class="note__icon" aria-hidden="true">🪄</span>
+          <span>
+            <strong>귀찮으시면</strong><br>
+            아래 <b>예시값 채우기</b> 버튼 한 번이면 전부 채워집니다.
+          </span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- 약관 전문 -->
+  <div class="modal" id="modal-terms" role="dialog" aria-modal="true" aria-labelledby="modal-terms-h">
+    <div class="modal__panel">
+      <button class="modal__close" type="button" data-modal-close aria-label="닫기">✕</button>
+      <h2 id="modal-terms-h">이용약관</h2>
+      <p class="hint">아무도 안 읽는다는 걸 알지만 그래도 써 두었습니다.</p>
+      <hr>
+      <p><b>제1조 (목적)</b><br>
+        이 약관은 이헌준의 개인 홈페이지를 구경하는 데 필요한 최소한의 합의를 정합니다.</p>
+      <p><b>제2조 (회원의 의무)</b><br>
+        회원은 수박게임에서 게임오버가 떴을 때 화면에 화를 내지 않도록 노력합니다.
+        다만 노력하지 않아도 제재하지 않습니다.</p>
+      <p><b>제3조 (서비스의 한계)</b><br>
+        이 사이트는 서버 없이 브라우저 안에서만 동작합니다.
+        따라서 로그인, 게시글, 결제 같은 것은 존재하지 않습니다.
+        존재하지 않는 것에 대해서는 책임도 지지 않습니다.</p>
+      <p><b>제4조 (탈퇴)</b><br>
+        브라우저 탭을 닫으면 즉시 탈퇴 처리됩니다. 붙잡지 않습니다.</p>
+    </div>
+  </div>
+
+  <div class="modal" id="modal-privacy" role="dialog" aria-modal="true" aria-labelledby="modal-privacy-h">
+    <div class="modal__panel">
+      <button class="modal__close" type="button" data-modal-close aria-label="닫기">✕</button>
+      <h2 id="modal-privacy-h">개인정보 수집·이용 동의</h2>
+      <p class="hint">짧습니다. 정말입니다.</p>
+      <hr>
+      <p><b>수집 항목</b><br>
+        아이디, 이름, 닉네임, 이메일, 휴대폰, 생년월일, 성별, 관심사, 한 줄 소개.
+        비밀번호는 화면 안에서만 검사하고 전송하지 않습니다.</p>
+      <p><b>이용 목적</b><br>
+        바로 다음 화면에 "이렇게 입력하셨습니다" 하고 보여 주기 위해서입니다. 그 외의 목적은 없습니다.</p>
+      <p><b>보유 기간</b><br>
+        페이지를 벗어나는 순간까지. 전송 수단이 주소창이라, 주소를 닫으면 같이 사라집니다.</p>
+      <p><b>제3자 제공</b><br>
+        제공할 곳이 없습니다.</p>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__inner">
+      <span>© 2026 이헌준</span>
+      <span class="mono">회원가입</span>
+    </div>
+  </footer>
+
+  <script src="../script/core/store.js"></script>
+  <script src="../script/core/ui.js"></script>
+  <script src="../script/signUpForm.js"></script>
+</body>
+</html>

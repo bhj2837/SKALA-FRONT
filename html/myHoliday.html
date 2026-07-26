@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="아무것도 하지 않기로 정한 하루 — 이헌준의 주말 타임라인.">
+  <title>쉬는 날 · 아무것도 안 하는 하루</title>
+  <meta name="author" content="이헌준">
+
+  <!-- 카카오톡·슬랙 등에 링크를 붙였을 때 보이는 미리보기 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이헌준">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="쉬는 날 · 아무것도 안 하는 하루">
+  <meta property="og:description" content="아무것도 하지 않기로 정한 하루 — 이헌준의 주말 타임라인.">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 모바일 브라우저 주소창 색을 배경과 맞춘다 -->
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("hj:theme");
+        var light = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+      } catch (e) {}
+    })();
+  </script>
+
+  <!--
+     영문 폰트만 받아 온다. 한글은 각자 컴퓨터에 깔린 것을 쓴다.
+     preconnect 는 "이 주소에서 곧 뭘 받을 거니까 미리 길을 터 두라"는 뜻이다.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛋️</text></svg>">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand plain" href="index.html">
+        <span class="brand__mark">HJ</span>
+        <span>HEONJUN <span class="brand__sub">/ 이헌준</span></span>
+      </a>
+
+      <nav class="site-nav" data-nav aria-label="주요 메뉴">
+        <ul>
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="myProfile.html">Profile</a></li>
+          <li><a class="nav-link" href="myHoliday.html">Holiday</a></li>
+          <li><a class="nav-link" href="myClass.html">Class</a></li>
+          <li><a class="nav-link" href="myTrip.html">Trip</a></li>
+          <li><a class="nav-link" href="playground.html">Playground</a></li>
+          <li><a class="nav-link" href="signUp.html">Join</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="테마 전환">
+          <span class="theme-toggle__moon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container container--wide page">
+
+    <div class="page-head">
+      <p class="eyebrow">Holiday</p>
+
+      <h1>아무것도 안 하기로 정한 하루</h1>
+
+      <p class="lead">
+        계획을 세우지 않는 것이 이 하루의 유일한 계획입니다.
+        알람을 끄고, 창문 커튼을 그대로 두고, <mark>배가 고파질 때까지 아무것도 결정하지 않는 날</mark>.
+        <br>
+        아래는 실제로 지난 토요일에 일어난 일을 시간 순서대로 적은 것입니다.
+      </p>
+    </div>
+
+    <div class="page-grid">
+      <main id="main">
+
+        <!-- 오전 -->
+        <section class="section" aria-labelledby="am-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">11:00 — 14:00</p>
+              <h2 id="am-h">오전이라고 부르기 어려운 오전</h2>
+            </div>
+            <span class="chip"><span aria-hidden="true">☀️</span> 늦잠</span>
+          </div>
+
+          <div class="card card--pad-lg reveal">
+            <ol class="timeline">
+              <li>
+                <span class="timeline__time">11:20</span>
+                <h3>알람 없이 눈이 떠짐</h3>
+                <p>
+                  평일에는 그렇게 안 떠지는 눈이 주말에는 알아서 떠집니다.
+                  다만 <mark class="warm">일어나는 것과 눈을 뜨는 것은 다른 일</mark>이라
+                  이불 속에서 40분을 더 보냅니다.
+                  <br>
+                  그 40분 동안 하는 일은 대체로 침대에 누워 휴대폰 화면을 위로 밀어 올리는 것입니다.
+                </p>
+              </li>
+              <li>
+                <span class="timeline__time">12:10</span>
+                <h3>첫 끼 겸 두 번째 끼</h3>
+                <p>
+                  아침과 점심의 경계가 사라지는 시간. 냉장고를 열고 3초 안에 결정합니다.
+                  대체로 어제 남은 김치찌개를 다시 끓이거나, 그마저 없으면 파스타를 삶습니다.
+                  <br>
+                  요리라고 부르기엔 재료가 너무 적고, 라면이라고 부르기엔 설거지가 너무 많습니다.
+                </p>
+              </li>
+              <li>
+                <span class="timeline__time">13:00</span>
+                <h3>커피 한 잔과 아무 결정도 하지 않는 시간</h3>
+                <p>
+                  창가에 앉아 커피를 마시면서 오늘 뭘 할지 &ldquo;생각만&rdquo; 합니다.
+                  실제로 정해지는 것은 없습니다. 이 시간의 목적이 원래 그것입니다.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 오후 -->
+        <section class="section" aria-labelledby="pm-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">14:00 — 19:00</p>
+              <h2 id="pm-h">본격적으로 시간을 흘려보내는 오후</h2>
+            </div>
+            <span class="chip"><span aria-hidden="true">🎮</span> 게임 · 유튜브</span>
+          </div>
+
+          <div class="card card--pad-lg reveal">
+            <ol class="timeline">
+              <li>
+                <span class="timeline__time">14:00</span>
+                <h3>게임 — 한 판만 하려고 켰습니다</h3>
+                <p>
+                  &ldquo;한 판만&rdquo;은 이 집에서 가장 신뢰받지 못하는 문장입니다.
+                  한 판이 끝나면 다음 판에서는 잘할 것 같은 확신이 들고, 그 확신이 세 시간을 먹습니다.
+                  <br>
+                  최근에는 <mark>과일이 굴러다니는 퍼즐 게임</mark>에 빠져 있습니다.
+                  하도 많이 해서 직접 만들어 보기까지 했습니다 —
+                  <a href="playground.html">Playground</a>에 올려 두었습니다.
+                </p>
+              </li>
+              <li>
+                <span class="timeline__time">17:00</span>
+                <h3>유튜브 — 알고리즘에게 하루를 맡김</h3>
+                <p>
+                  처음 클릭한 영상은 키보드 리뷰였는데, 정신을 차려 보면 심해 생물 다큐멘터리를 보고 있습니다.
+                  중간 경로는 아무도 모릅니다.
+                  <br>
+                  자동재생을 끄면 해결된다는 것을 알고 있지만, 아직 끄지 않았습니다.
+                </p>
+              </li>
+              <li>
+                <span class="timeline__time">18:30</span>
+                <h3>슬슬 죄책감이 오는 시간</h3>
+                <p>
+                  해가 기울기 시작하면 &ldquo;오늘 한 게 아무것도 없다&rdquo;는 생각이 찾아옵니다.
+                  이때 산책을 나가면 그 생각이 사라지고, 안 나가면 밤까지 따라옵니다.
+                </p>
+              </li>
+            </ol>
+          </div>
+        </section>
+
+        <!-- 밤 -->
+        <section class="section" aria-labelledby="night-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">19:00 — 02:00</p>
+              <h2 id="night-h">하루를 되찾는 저녁 산책</h2>
+            </div>
+            <span class="chip"><span aria-hidden="true">🌙</span> 산책 · 정리</span>
+          </div>
+
+          <div class="card card--pad-lg reveal">
+            <ol class="timeline">
+              <li>
+                <span class="timeline__time">19:30</span>
+                <h3>이어폰을 끼고 40분 걷기</h3>
+                <p>
+                  목적지는 없고 경로는 항상 같습니다. 집 → 천변 → 편의점 → 집.
+                  이 산책이 하루에서 <mark class="hot">가장 생산적인 40분</mark>입니다.
+                  걷는 동안 막혔던 코드 문제가 풀리는 경우가 자주 있어서,
+                  요즘은 문제가 안 풀리면 그냥 나갑니다.
+                </p>
+              </li>
+              <li>
+                <span class="timeline__time">21:00</span>
+                <h3>돌아와서 뭔가를 조금 만듦</h3>
+                <p>
+                  산책하면서 떠오른 것을 잊기 전에 붙잡습니다.
+                  이 페이지의 첫 화면도, 여행 지도도 그렇게 시작됐습니다.
+                  <br>
+                  거창하게 시작하지 않는 것이 요령입니다. 한 줄부터.
+                </p>
+              </li>
+              <li>
+                <span class="timeline__time">01:30</span>
+                <h3>&ldquo;이것만 고치고 자야지&rdquo;</h3>
+                <p>
+                  가장 위험한 문장입니다. 이 문장 다음에 시계를 보면 보통 3시입니다.
+                  그리고 다음 날 아침, 이 페이지의 첫 항목으로 돌아갑니다.
+                </p>
+              </li>
+            </ol>
+
+            <div class="note note--warn" style="margin-top:1.6rem">
+              <span class="note__icon" aria-hidden="true">🔁</span>
+              <span>
+                <strong>결론</strong><br>
+                아무것도 안 하는 하루였다고 적었지만, 다시 읽어 보니 게임하고 걷고 뭔가 만들었습니다.
+                아무것도 안 하는 하루는 생각보다 쉽지 않습니다.
+              </span>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar" aria-label="사이드바">
+
+        <section class="widget" aria-labelledby="sum-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="sum-h"><span aria-hidden="true">📊</span> 하루 결산</h2>
+          </div>
+
+          <div class="stat-row">
+            <div class="stat">
+              <span class="stat__num" data-count="11" data-count-suffix="h">0</span>
+              <span class="stat__label">기상 시각</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="3" data-count-suffix="h">0</span>
+              <span class="stat__label">게임</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="2" data-count-suffix="h">0</span>
+              <span class="stat__label">유튜브</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="40" data-count-suffix="분">0</span>
+              <span class="stat__label">산책</span>
+            </div>
+          </div>
+
+          <div class="stack-s" style="margin-top:1.3rem">
+            <div>
+              <div class="bar-label">
+                <span>휴식</span><span class="muted">넉넉함</span>
+              </div>
+              <div class="bar" role="progressbar" aria-label="휴식"
+                   aria-valuenow="88" aria-valuemin="0" aria-valuemax="100"><span class="bar__fill" style="width:88%"></span></div>
+            </div>
+            <div>
+              <div class="bar-label">
+                <span>생산성</span><span class="muted">아쉬움</span>
+              </div>
+              <div class="bar" role="progressbar" aria-label="생산성"
+                   aria-valuenow="32" aria-valuemin="0" aria-valuemax="100"><span class="bar__fill" style="width:32%"></span></div>
+            </div>
+            <div>
+              <div class="bar-label">
+                <span>만족도</span><span class="muted">충분함</span>
+              </div>
+              <div class="bar" role="progressbar" aria-label="만족도"
+                   aria-valuenow="76" aria-valuemin="0" aria-valuemax="100"><span class="bar__fill" style="width:76%"></span></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="widget" aria-labelledby="rule-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="rule-h"><span aria-hidden="true">📜</span> 주말 3원칙</h2>
+          </div>
+          <ol class="list-check t-sm">
+            <li><span class="todo-name">알람 금지</span> — 몸이 알아서 일어날 때까지 둡니다.</li>
+            <li><span class="todo-name">한 끼는 직접</span> — 배달만 두 번 시키면 하루가 무너집니다.</li>
+            <li><span class="todo-name">밖에 한 번은 나간다</span> — 이거 하나만 지켜도 하루가 살아납니다.</li>
+          </ol>
+        </section>
+
+        <section class="widget" aria-labelledby="tagh">
+          <div class="widget__head">
+            <h2 class="widget__title" id="tagh"><span aria-hidden="true">🍜</span> 이날 먹은 것</h2>
+          </div>
+          <ul class="list-fancy t-sm">
+            <li>어제 남은 김치찌개, 다시 끓임</li>
+            <li>아이스 아메리카노 두 잔</li>
+            <li>산책길 편의점 아이스크림</li>
+            <li>새벽 두 시의 라면 (후회함)</li>
+          </ul>
+        </section>
+
+        <div class="note note--info">
+          <span class="note__icon" aria-hidden="true">🔗</span>
+          <span>
+            <strong>다음 페이지</strong><br>
+            평일은 전혀 다릅니다. <a href="myClass.html">주간 시간표</a>를 보세요.
+          </span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__inner">
+      <span>© 2026 이헌준</span>
+      <span class="mono">쉬는 날</span>
+    </div>
+  </footer>
+
+  <script src="../script/core/store.js"></script>
+  <script src="../script/core/ui.js"></script>
+</body>
+</html>

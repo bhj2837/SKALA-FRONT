@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="가입이 끝났습니다 — 입력하신 내용을 그대로 보여 드립니다.">
+  <title>가입 완료 · 이헌준</title>
+  <meta name="author" content="이헌준">
+
+  <!-- 카카오톡·슬랙 등에 링크를 붙였을 때 보이는 미리보기 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이헌준">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="가입 완료 · 이헌준">
+  <meta property="og:description" content="가입이 끝났습니다 — 입력하신 내용을 그대로 보여 드립니다.">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 모바일 브라우저 주소창 색을 배경과 맞춘다 -->
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("hj:theme");
+        var light = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+      } catch (e) {}
+    })();
+  </script>
+
+  <!--
+     영문 폰트만 받아 온다. 한글은 각자 컴퓨터에 깔린 것을 쓴다.
+     preconnect 는 "이 주소에서 곧 뭘 받을 거니까 미리 길을 터 두라"는 뜻이다.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎉</text></svg>">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+
+  <!-- 색종이 -->
+  <canvas id="confetti" aria-hidden="true"
+          style="position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:400"></canvas>
+
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand plain" href="index.html">
+        <span class="brand__mark">HJ</span>
+        <span>HEONJUN <span class="brand__sub">/ 이헌준</span></span>
+      </a>
+
+      <nav class="site-nav" data-nav aria-label="주요 메뉴">
+        <ul>
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="myProfile.html">Profile</a></li>
+          <li><a class="nav-link" href="myHoliday.html">Holiday</a></li>
+          <li><a class="nav-link" href="myClass.html">Class</a></li>
+          <li><a class="nav-link" href="myTrip.html">Trip</a></li>
+          <li><a class="nav-link" href="playground.html">Playground</a></li>
+          <li><a class="nav-link" href="signUp.html">Join</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="테마 전환">
+          <span class="theme-toggle__moon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container container--wide page">
+
+    <div class="page-head">
+      <p class="eyebrow">Welcome</p>
+      <h1 data-result-title>가입이 끝났습니다</h1>
+      <p class="lead" data-result-lead>
+        입력하신 내용을 아래에 그대로 정리해 두었습니다.
+        <mark>확인 메일 같은 건 오지 않으니</mark> 편하게 둘러보시면 됩니다.
+      </p>
+    </div>
+
+    <div class="page-grid">
+
+      <!-- MAIN — 결과 -->
+      <main id="main">
+
+        <!-- ---------- 멤버십 카드 ---------- -->
+        <section class="section">
+          <div class="card card--gradient card--pad-lg tilt" data-tilt="5" id="member-card">
+            <div class="cluster" style="justify-content:space-between; align-items:flex-start">
+              <div>
+                <p class="eyebrow" style="margin-bottom:.7rem">회원 카드</p>
+                <h2 style="margin-bottom:.2rem" data-r-name>—</h2>
+                <p class="mono muted t-sm" data-r-email>—</p>
+              </div>
+              <span class="brand__mark" data-r-avatar
+                    style="width:64px;height:64px;font-size:1.5rem;flex:none">?</span>
+            </div>
+
+            <hr>
+
+            <div class="stat-row">
+              <div class="stat">
+                <span class="stat__num mono" data-r-userid style="font-size:1.2rem">—</span>
+                <span class="stat__label">아이디</span>
+              </div>
+              <div class="stat">
+                <span class="stat__num mono" data-r-id style="font-size:1.2rem">—</span>
+                <span class="stat__label">회원 번호</span>
+              </div>
+              <div class="stat">
+                <span class="stat__num" data-r-grade style="font-size:1.2rem">—</span>
+                <span class="stat__label">등급</span>
+              </div>
+              <div class="stat">
+                <span class="stat__num mono" data-r-joined style="font-size:1.2rem">—</span>
+                <span class="stat__label">가입일</span>
+              </div>
+            </div>
+
+            <hr>
+
+            <p class="muted" style="font-size:var(--fs-sm); margin-bottom:.5rem">한 줄 소개</p>
+            <blockquote data-r-intro>—</blockquote>
+          </div>
+        </section>
+
+        <!-- ---------- 전달된 값 전체 ---------- -->
+        <section class="section" aria-labelledby="raw-h">
+          <div class="section__head">
+            <div>
+              <p class="eyebrow">Summary</p>
+              <h2 id="raw-h">입력하신 내용</h2>
+            </div>
+            <span class="chip"><b data-r-count>0</b>개 항목</span>
+          </div>
+
+          <div class="card card--flush">
+            <div class="table-wrap">
+              <table>
+                <caption>넘어온 값 그대로입니다. 잘못 적은 곳이 있으면 다시 가입하시면 됩니다.</caption>
+                <thead>
+                  <tr>
+                    <th scope="col">항목</th>
+                    <th scope="col">내용</th>
+                    <th scope="col">구분</th>
+                  </tr>
+                </thead>
+                <tbody data-r-table>
+                  <tr><td colspan="3" class="center muted">아직 받은 내용이 없습니다.</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:1.2rem">
+            <p class="muted" style="font-size:var(--fs-sm); margin-bottom:.6rem">
+              이 화면의 주소 — 복사해 두면 나중에 그대로 다시 열립니다
+            </p>
+            <div class="console" data-r-url style="min-height:auto"></div>
+            <div class="form-actions" style="margin-top:1rem">
+              <a class="btn btn--primary" href="signUp.html">
+                <span class="btn__icon" aria-hidden="true">↩</span> 다시 가입하기
+              </a>
+              <button class="btn" type="button" data-r-copy>
+                <span class="btn__icon" aria-hidden="true">📋</span> 주소 복사
+              </button>
+              <a class="btn btn--ghost" href="index.html">
+                <span class="btn__icon" aria-hidden="true">🏠</span> 홈으로
+              </a>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <!-- ASIDE -->
+      <aside class="sidebar" aria-label="사이드바">
+
+        <section class="widget" aria-labelledby="how-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="how-h">
+              <span aria-hidden="true">🎁</span> 가입 혜택
+            </h2>
+          </div>
+          <ul class="list-fancy t-sm">
+            <li>이 카드 한 장</li>
+            <li>수박게임 무제한 이용권 <span class="muted">(원래 무제한)</span></li>
+            <li>회원 번호 하나 <span class="muted">(아무 데도 안 쓰임)</span></li>
+            <li>광고 메일 0통 <span class="muted">(보낼 수단이 없음)</span></li>
+          </ul>
+        </section>
+
+        <section class="widget" aria-labelledby="code-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="code-h">
+              <span aria-hidden="true">🔓</span> 로그인은 어디에
+            </h2>
+          </div>
+          <p class="t-sm">
+            없습니다. 서버가 없으니 계정도 세션도 없습니다.
+            <mark>이 주소 자체가 회원증</mark>이라고 생각하시면 됩니다.
+          </p>
+          <p class="hint">
+            주소를 복사해 두면 이 화면이 그대로 다시 열립니다.
+          </p>
+        </section>
+
+        <section class="widget" aria-labelledby="next-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="next-h">
+              <span aria-hidden="true">🧭</span> 이어서 보기
+            </h2>
+          </div>
+          <ul class="list-fancy t-sm">
+            <li><a href="playground.html">Playground</a> — 직접 만든 게임 네 가지</li>
+            <li><a href="myTrip.html">여행</a> — 다녀온 여덟 도시</li>
+            <li><a href="index.html">홈</a> — 요즘 뭘 하고 지내는지</li>
+          </ul>
+        </section>
+
+        <div class="note note--info" data-r-empty style="display:none">
+          <span class="note__icon" aria-hidden="true">💡</span>
+          <span>
+            <strong>바로 들어오셨군요</strong><br>
+            이 화면은 <a href="signUp.html">회원가입</a>을 마치고 나면 채워집니다.
+            가입 화면에서 <b>예시값 채우기</b>를 눌러 보셔도 됩니다.
+          </span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__inner">
+      <span>© 2026 이헌준</span>
+      <span class="mono">가입 완료</span>
+    </div>
+  </footer>
+
+  <script src="../script/core/store.js"></script>
+  <script src="../script/core/ui.js"></script>
+  <script src="../script/signUpResult.js"></script>
+</body>
+</html>

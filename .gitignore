@@ -1,0 +1,18 @@
+# 편집 중에 생긴 백업 파일
+*.bak
+*.orig
+*~
+
+# 운영체제가 폴더마다 몰래 만드는 파일
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# 편집기 설정 (사람마다 다르니 공유하지 않는다)
+.vscode/
+.idea/
+
+# 로컬 서버·도구 부산물
+node_modules/
+.cache/
+*.log

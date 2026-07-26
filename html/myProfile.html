@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="이헌준의 프로필 — 좋아하는 음식, 올해의 목표, 나를 설명하는 단어들.">
+  <title>My Profile · 이헌준</title>
+  <meta name="author" content="이헌준">
+
+  <!-- 카카오톡·슬랙 등에 링크를 붙였을 때 보이는 미리보기 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이헌준">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="My Profile · 이헌준">
+  <meta property="og:description" content="이헌준의 프로필 — 좋아하는 음식, 올해의 목표, 나를 설명하는 단어들.">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 모바일 브라우저 주소창 색을 배경과 맞춘다 -->
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("hj:theme");
+        var light = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+      } catch (e) {}
+    })();
+  </script>
+
+  <!--
+     영문 폰트만 받아 온다. 한글은 각자 컴퓨터에 깔린 것을 쓴다.
+     preconnect 는 "이 주소에서 곧 뭘 받을 거니까 미리 길을 터 두라"는 뜻이다.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🪪</text></svg>">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand plain" href="index.html">
+        <span class="brand__mark">HJ</span>
+        <span>HEONJUN <span class="brand__sub">/ 이헌준</span></span>
+      </a>
+
+      <nav class="site-nav" data-nav aria-label="주요 메뉴">
+        <ul>
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="myProfile.html">Profile</a></li>
+          <li><a class="nav-link" href="myHoliday.html">Holiday</a></li>
+          <li><a class="nav-link" href="myClass.html">Class</a></li>
+          <li><a class="nav-link" href="myTrip.html">Trip</a></li>
+          <li><a class="nav-link" href="playground.html">Playground</a></li>
+          <li><a class="nav-link" href="signUp.html">Join</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="테마 전환">
+          <span class="theme-toggle__moon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="container container--wide page">
+
+    <div class="page-head">
+      <p class="eyebrow">About me</p>
+      <h1>이헌준을 이루는 것들</h1>
+      <p class="lead">
+        좋아하는 음식, 올해 꼭 해내고 싶은 일, 그리고 스스로를 설명할 때 쓰는 말들.
+        길게 소개하는 대신 <mark>목록으로</mark> 적어 두었습니다.
+      </p>
+    </div>
+
+    <div class="page-grid">
+      <main id="main">
+
+        <!-- 좋아하는 음식 -->
+        <section class="section" aria-labelledby="food-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">Favorites</p>
+              <h2 id="food-h">좋아하는 음식</h2>
+            </div>
+            <span class="chip">순서 없음 · 3가지</span>
+          </div>
+
+          <div class="card reveal">
+            <p class="muted t-sm" style="margin-bottom:1rem">
+              셋 중에 뭐가 제일이냐고 물으면 대답을 못 합니다.
+            </p>
+
+            <ul class="list-fancy">
+              <li><span class="todo-name">파스타</span> — 바다의 감칠맛이 잘 느껴지는 봉골레를 가장 선호합니다.</li>
+              <li><span class="todo-name">라멘</span> — 정갈한 쇼유라멘을 선호합니다.  일본을 가면 첫 끼니는 항상 라멘입니다.</li>
+              <li><span class="todo-name">김치찌개</span> — 결국 돌아오는 자리. 잘 익은 김치만 있으면 나머지는 알아서 됩니다.</li>
+            </ul>
+
+            <div class="cluster" style="margin-top:1.4rem">
+              <span class="chip"><span aria-hidden="true">🍝</span> 파스타</span>
+              <span class="chip"><span aria-hidden="true">🍜</span> 라멘</span>
+              <span class="chip"><span aria-hidden="true">🍲</span> 김치찌개</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 올해 할 일 -->
+        <section class="section" aria-labelledby="todo-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">Goals</p>
+              <h2 id="todo-h">올해 할 일</h2>
+            </div>
+            <span class="chip"><span class="chip__dot"></span>우선순위 순</span>
+          </div>
+
+          <div class="card reveal">
+            <p class="muted t-sm" style="margin-bottom:1.2rem">
+              위에서 아래로 갈수록 급한 일입니다. 체크된 항목은 이미 끝났습니다.
+            </p>
+
+            <!-- 위에서 아래로 갈수록 급한 일 -->
+            <ol class="list-check">
+              <li data-done="true">
+                <span class="todo-name">내 홈페이지 만들기</span> —
+                 지금 보고 계신 이 페이지입니다.
+              </li>
+              <li>
+                <span class="todo-name">OPIc 취득</span> —
+                <mark>IH 이상</mark>을 목표로 잡았습니다. 스크립트를 외우는 대신 매일 5분씩 혼자 떠드는 방식으로 준비 중.
+              </li>
+              <li>
+                <span class="todo-name">취업</span> —
+                이력서와 포트폴리오를 같이 굴리는 중입니다. 이 페이지도 그 일부입니다.
+              </li>
+              <li>
+                <span class="todo-name">사이드 프로젝트 하나 배포까지</span> —
+                만들다 접은 게 여러 개라, 올해는 완성도보다 &ldquo;배포&rdquo;를 기준으로 삼았습니다.
+              </li>
+              <li>
+                <span class="todo-name">여행 한 번 더</span> —
+                다음 목표는 후쿠오카입니다. 지도의 빈칸을 하나 채우는 게 취미가 됐습니다.
+              </li>
+            </ol>
+
+            <div class="cluster" style="margin-top:1.5rem; justify-content:space-between">
+              <span class="hint" style="margin:0">진행률 1 / 5</span>
+              <a class="btn btn--ghost btn--sm" href="index.html#hub">다른 페이지 보기</a>
+            </div>
+            <div class="bar" aria-hidden="true" style="margin-top:.6rem"><span class="bar__fill" style="width:20%"></span></div>
+          </div>
+        </section>
+
+        <!-- 나를 설명하는 단어들 -->
+        <section class="section" aria-labelledby="word-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">Keywords</p>
+              <h2 id="word-h">나를 설명하는 단어들</h2>
+            </div>
+            <span class="chip">6가지</span>
+          </div>
+
+          <div class="card card--pad-lg reveal">
+            <!-- 용어와 설명이 짝을 이루는 목록 -->
+            <dl class="def-list">
+              <div>
+                <dt>결정하는 사람</dt>
+                <dd>
+                  회의가 길어지면 결국 누군가는 &ldquo;그럼 이렇게 갑시다&rdquo;라고 말해야 합니다.
+                  저는 그 말을 먼저 하는 편입니다. 틀리면 빨리 되돌리면 되니까요.
+                </dd>
+              </div>
+              <div>
+                <dt>넓게 보는 사람</dt>
+                <dd>
+                  한 분야를 깊게 파는 것보다 서로 다른 분야를 이어붙일 때 재미를 느낍니다.
+                  프론트엔드를 고른 이유도 디자인 · 기획 · 코드가 한 화면에서 만나기 때문입니다.
+                </dd>
+              </div>
+              <div>
+                <dt>완성보다 배포</dt>
+                <dd>
+                  머릿속에서 100점인 기획보다 화면에 떠 있는 70점이 낫다고 생각합니다.
+                  이 페이지도 일단 올려놓고 계속 고치는 중입니다.
+                </dd>
+              </div>
+              <div>
+                <dt>구조를 먼저 그리는 사람</dt>
+                <dd>
+                  뭘 시작하든 이름부터 정해 놓고 움직입니다.
+                  여행 갈 때도 일정표부터 짜 놓고 정작 그대로 안 지킵니다.
+                </dd>
+              </div>
+              <div>
+                <dt>늦게 자고 늦게 일어남</dt>
+                <dd>
+                  가장 조용한 시간이 새벽이라 어쩔 수 없습니다.
+                  덕분에 주말 아침은 늘 없습니다. 자세한 하루는 <a href="myHoliday.html">Holiday</a>에.
+                </dd>
+              </div>
+              <div>
+                <dt>지도 수집가</dt>
+                <dd>
+                  여행지를 정할 때 &ldquo;가고 싶은 곳&rdquo;보다 &ldquo;지도에서 비어 보이는 곳&rdquo;을 먼저 봅니다.
+                  현재 8칸을 채웠습니다. <a href="myTrip.html">Trip</a>에서 확인할 수 있습니다.
+                </dd>
+              </div>
+            </dl>
+          </div>
+        </section>
+      </main>
+
+      <aside class="sidebar" aria-label="사이드바">
+
+        <section class="widget" aria-labelledby="card-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="card-h"><span aria-hidden="true">🪪</span> 명함</h2>
+            <span class="chip chip--live"><span class="chip__dot"></span>구직 중</span>
+          </div>
+
+          <div class="stack-s">
+            <div>
+              <div class="stat__num" style="font-size:1.7rem">이헌준</div>
+              <div class="stat__label">Lee Heonjun · Frontend</div>
+            </div>
+            <hr style="border:0; border-top:1px solid var(--line); margin:.4rem 0">
+            <p class="t-sm" style="color:var(--text-dim); margin:0">
+              화면 안에서 뭔가 움직이는 걸 만드는 데 관심이 많습니다.
+              요즘은 게임 쪽을 기웃거리는 중입니다.
+            </p>
+          </div>
+
+          <div class="stat-row" style="margin-top:1.2rem">
+            <div class="stat">
+              <span class="stat__num" data-count="3" data-count-suffix="종">0</span>
+              <span class="stat__label">좋아하는 음식</span>
+            </div>
+            <div class="stat">
+              <span class="stat__num" data-count="5" data-count-suffix="개">0</span>
+              <span class="stat__label">올해의 목표</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="widget" aria-labelledby="tag-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="tag-h"><span aria-hidden="true">🏷️</span> 사소한 취향</h2>
+          </div>
+          <ul class="list-fancy t-sm">
+            <li>커피는 아이스, 계절 상관없이</li>
+            <li>라멘은 무조건 국물까지</li>
+            <li>영화는 자막으로, 두 번씩</li>
+            <li>산책은 해가 진 다음에</li>
+            <li>키보드는 소리 큰 쪽</li>
+          </ul>
+          <p class="hint">
+            바뀌는 것도 있고, 십 년째 그대로인 것도 있습니다.
+          </p>
+        </section>
+
+        <div class="note note--info">
+          <span class="note__icon" aria-hidden="true">🔗</span>
+          <span>
+            <strong>다음 페이지</strong><br>
+            <a href="myHoliday.html">주말의 하루</a>를 타임라인으로 정리했습니다.
+          </span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__inner">
+      <span>© 2026 이헌준</span>
+      <span class="mono">프로필</span>
+    </div>
+  </footer>
+
+  <script src="../script/core/store.js"></script>
+  <script src="../script/core/ui.js"></script>
+</body>
+</html>

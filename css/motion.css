@@ -1,0 +1,200 @@
+@charset "utf-8";
+/*
+   motion.css
+   생동감을 불어넣는 애니메이션
+   1) 내비게이션 · 버튼 hover 시 부드러운 색 전환  → style.css의 transition 속성
+   2) 여행 카드 hover 시 떠오르기 + 그림자 강화     → style.css의 .trip-card:hover
+   3) index.html 진입 시 헤더 타이틀 페이드인       → 이 파일의 .reveal / .hero__title
+   + 그 외 keyframes 전부를 이 파일에 모아 관리한다.
+*/
+
+/* 1. KEYFRAMES */
+
+/* 배경 오로라가 천천히 흐르는 효과 */
+@keyframes aurora-drift {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  50%  { transform: translate3d(-3%, 2.5%, 0) scale(1.08); }
+  100% { transform: translate3d(3%, -2%, 0) scale(1.04); }
+}
+
+/* 아래에서 위로 페이드인 — 등장 애니메이션의 기본 */
+@keyframes fade-up {
+  from { opacity: 0; transform: translate3d(0, 26px, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* 글자가 아래에서 솟아오르는 마스크 애니메이션 */
+@keyframes line-rise {
+  from { opacity: 0; transform: translate3d(0, 110%, 0) rotate(4deg); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes scale-in {
+  from { opacity: 0; transform: scale(.9); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes slide-right {
+  from { opacity: 0; transform: translate3d(-24px, 0, 0); }
+  to   { opacity: 1; transform: none; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+@keyframes shimmer {
+  0%   { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* 좌우로 살랑이는 움직임 */
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  33%      { transform: translateY(-5px) rotate(-3deg); }
+  66%      { transform: translateY(3px) rotate(2deg); }
+}
+
+/* 스크롤 힌트 화살표 */
+@keyframes scroll-hint {
+  0%   { transform: scaleY(0);   transform-origin: top; }
+  45%  { transform: scaleY(1);   transform-origin: top; }
+  55%  { transform: scaleY(1);   transform-origin: bottom; }
+  100% { transform: scaleY(0);   transform-origin: bottom; }
+}
+
+/* 화면 흔들림 (게임 피드백) */
+@keyframes shake {
+  10%, 90% { transform: translateX(-1px); }
+  20%, 80% { transform: translateX(2px); }
+  30%, 50%, 70% { transform: translateX(-4px); }
+  40%, 60% { transform: translateX(4px); }
+}
+
+/* 점수 팝업 */
+@keyframes pop-up-fade {
+  0%   { opacity: 0; transform: translate(-50%, 0) scale(.6); }
+  25%  { opacity: 1; transform: translate(-50%, -14px) scale(1.1); }
+  100% { opacity: 0; transform: translate(-50%, -52px) scale(1); }
+}
+
+/*
+   2. 페이지 진입 애니메이션
+   index.html을 처음 열었을 때 상단 헤더 타이틀이 부드럽게 페이드인
+*/
+
+/* 히어로 타이틀: 줄 단위로 시차를 두고 솟아오른다 */
+.hero__title .ln > span {
+  animation: line-rise 1.1s var(--e-out) backwards;
+}
+.hero__title .ln:nth-child(1) > span { animation-delay: .12s; }
+.hero__title .ln:nth-child(2) > span { animation-delay: .24s; }
+.hero__title .ln:nth-child(3) > span { animation-delay: .36s; }
+
+/* 히어로 부속 요소들 */
+.hero .eyebrow    { animation: fade-in    .9s var(--e-out) .05s backwards; }
+.hero__sub        { animation: fade-up   1s   var(--e-out) .5s  backwards; }
+.hero .cluster    { animation: fade-up   1s   var(--e-out) .64s backwards; }
+.hero .stat-row   { animation: fade-up   1s   var(--e-out) .78s backwards; }
+.hero__canvas     { animation: fade-in   1.8s var(--e-out) .1s  backwards; }
+.hero__scroll     { animation: fade-in   1s   var(--e-out) 1.2s backwards; }
+.hero__scroll i   { animation: scroll-hint 2.2s var(--e-inout) infinite; }
+
+/* 헤더 바 & 페이지 제목 */
+.site-header { animation: fade-in .8s var(--e-out) backwards; }
+.page-head   { animation: fade-up .9s var(--e-out) .08s backwards; }
+
+/* 사이드바 위젯 계단식 등장 */
+.sidebar > * { animation: fade-up .8s var(--e-out) backwards; }
+.sidebar > *:nth-child(1) { animation-delay: .18s; }
+.sidebar > *:nth-child(2) { animation-delay: .28s; }
+.sidebar > *:nth-child(3) { animation-delay: .38s; }
+.sidebar > *:nth-child(4) { animation-delay: .48s; }
+
+/* 3. 스크롤 등장 (IntersectionObserver + .reveal) */
+.reveal {
+  opacity: 0;
+  transform: translate3d(0, 30px, 0);
+  transition:
+    opacity   .85s var(--e-out),
+    transform .85s var(--e-out);
+  transition-delay: var(--reveal-delay, 0s);
+  will-change: opacity, transform;
+}
+.reveal.is-in { opacity: 1; transform: none; }
+
+/* 자식들을 순차적으로 (stagger) */
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translate3d(0, 24px, 0);
+  transition: opacity .75s var(--e-out), transform .75s var(--e-out);
+}
+.reveal-stagger.is-in > * { opacity: 1; transform: none; }
+.reveal-stagger.is-in > *:nth-child(1) { transition-delay: .04s; }
+.reveal-stagger.is-in > *:nth-child(2) { transition-delay: .12s; }
+.reveal-stagger.is-in > *:nth-child(3) { transition-delay: .20s; }
+.reveal-stagger.is-in > *:nth-child(4) { transition-delay: .28s; }
+.reveal-stagger.is-in > *:nth-child(5) { transition-delay: .36s; }
+.reveal-stagger.is-in > *:nth-child(6) { transition-delay: .44s; }
+.reveal-stagger.is-in > *:nth-child(7) { transition-delay: .52s; }
+.reveal-stagger.is-in > *:nth-child(8) { transition-delay: .60s; }
+.reveal-stagger.is-in > *:nth-child(9) { transition-delay: .68s; }
+
+/* 4. 상시 모션 유틸 */
+/* 틀린 입력을 알리는 흔들림 (signUpForm.js · upDown.js 가 붙였다 뗀다) */
+.anim-shake { animation: shake .5s var(--e-inout); }
+
+/* 새로고침 버튼 — 누르는 순간 한 바퀴 (realtimeInfo.js 가 붙였다 뗀다) */
+.is-spin { animation: spin .5s var(--e-inout); }
+
+/* 마그네틱 hover — JS가 --mx/--my를 채워준다 */
+.magnetic {
+  transition: transform .32s var(--e-out);
+  transform: translate3d(var(--mx, 0), var(--my, 0), 0);
+}
+
+/* 3D 틸트 카드 — JS가 --rx/--ry를 채워준다 */
+.tilt {
+  transform-style: preserve-3d;
+  transform:
+    perspective(900px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    translateZ(0);
+  transition: transform .4s var(--e-out);
+}
+.tilt.is-tilting { transition: transform .08s linear; }
+
+/*
+   .hub-card / .trip-card 는 hover 시 자체 translateY 를 쓰기 때문에
+   틸트 회전과 충돌한다. 두 변환을 하나로 합쳐 다시 선언해 준다.
+   (`.hub-card.tilt:hover` = 클래스 3개 → `.hub-card:hover` 보다 우선)
+*/
+.hub-card.tilt:hover {
+  transform:
+    perspective(900px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    translateY(-7px);
+}
+.trip-card.tilt:hover {
+  transform:
+    perspective(900px)
+    rotateX(var(--rx, 0deg))
+    rotateY(var(--ry, 0deg))
+    translateY(-9px);
+}
+
+/* 5. 접근성 — 모션 최소화 설정 존중 */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .reveal, .reveal-stagger > * { opacity: 1 !important; transform: none !important; filter: none !important; }
+}

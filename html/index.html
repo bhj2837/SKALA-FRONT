@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="이헌준의 홈페이지 — 프로필, 쉬는 날, 시간표, 여행 지도, 직접 만든 게임들.">
+  <meta name="author" content="이헌준">
+  <title>이헌준</title>
+
+  <!-- 카카오톡·슬랙 등에 링크를 붙였을 때 보이는 미리보기 정보 -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="이헌준">
+  <meta property="og:locale" content="ko_KR">
+  <meta property="og:title" content="이헌준">
+  <meta property="og:description" content="이헌준의 홈페이지 — 프로필, 쉬는 날, 시간표, 여행 지도, 직접 만든 게임들.">
+  <meta name="twitter:card" content="summary">
+
+  <!-- 모바일 브라우저 주소창 색을 배경과 맞춘다 -->
+  <meta name="theme-color" content="#07080c" media="(prefers-color-scheme: dark)">
+  <meta name="theme-color" content="#f7f8fc" media="(prefers-color-scheme: light)">
+  <meta name="color-scheme" content="dark light">
+
+  <!-- 페인트 전에 테마를 미리 확정해 화면 깜빡임(FOUC)을 막는다 -->
+  <script>
+    (function () {
+      try {
+        var saved = localStorage.getItem("hj:theme");
+        var light = window.matchMedia && window.matchMedia("(prefers-color-scheme: light)").matches;
+        document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+      } catch (e) { /* 스토리지가 막혀 있으면 기본 다크 유지 */ }
+    })();
+  </script>
+
+  <!--
+     영문 폰트만 받아 온다. 한글은 각자 컴퓨터에 깔린 것을 쓴다.
+     preconnect 는 "이 주소에서 곧 뭘 받을 거니까 미리 길을 터 두라"는 뜻이다.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;600&amp;display=swap">
+  <!-- 배경 3D 라이브러리도 같은 방식으로 미리 길을 터 둔다 -->
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/motion.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🛰️</text></svg>">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">본문으로 바로 가기</a>
+  <div class="scroll-progress" data-scroll-progress></div>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <div class="container container--wide site-header__inner">
+      <a class="brand plain" href="index.html">
+        <span class="brand__mark">HJ</span>
+        <span>HEONJUN <span class="brand__sub">/ 이헌준</span></span>
+      </a>
+
+      <nav class="site-nav" data-nav aria-label="주요 메뉴">
+        <ul>
+          <li><a class="nav-link" href="index.html">Home</a></li>
+          <li><a class="nav-link" href="myProfile.html">Profile</a></li>
+          <li><a class="nav-link" href="myHoliday.html">Holiday</a></li>
+          <li><a class="nav-link" href="myClass.html">Class</a></li>
+          <li><a class="nav-link" href="myTrip.html">Trip</a></li>
+          <li><a class="nav-link" href="playground.html">Playground</a></li>
+          <li><a class="nav-link" href="signUp.html">Join</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <button class="theme-toggle" type="button" data-theme-toggle aria-label="테마 전환">
+          <span class="theme-toggle__moon" aria-hidden="true">🌙</span>
+          <span class="theme-toggle__sun" aria-hidden="true">☀️</span>
+        </button>
+        <button class="nav-toggle" type="button" data-nav-toggle aria-expanded="false" aria-label="메뉴 열기">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero" aria-labelledby="hero-title">
+    <canvas class="hero__canvas" id="hero-canvas" aria-hidden="true"></canvas>
+
+    <div class="container container--wide hero__inner">
+      <p class="eyebrow">Home</p>
+
+      <h1 class="hero__title" id="hero-title">
+        <span class="ln"><span>어서 오세요,</span></span>
+        <span class="ln"><span class="grad-text">이헌준</span><span>의</span></span>
+        <span class="ln"><span>작업실입니다.</span></span>
+      </h1>
+
+      <p class="hero__sub">
+        늦게 자고 늦게 일어납니다. 게임하고, 산책하고, 가끔 뭔가를 만듭니다.
+        그렇게 만든 것들을 <mark>한군데에</mark> 모아 두었습니다.
+      </p>
+
+      <div class="cluster" style="margin-top:1.9rem">
+        <a class="btn btn--primary btn--lg magnetic" href="#hub" data-cursor-hover>
+          <span class="btn__icon" aria-hidden="true">✦</span> 페이지 둘러보기
+        </a>
+        <a class="btn btn--ghost btn--lg" href="playground.html" data-cursor-hover>
+          <span class="btn__icon" aria-hidden="true">🎮</span> Playground
+        </a>
+      </div>
+
+      <div class="stat-row" style="margin-top:2.6rem; max-width:680px">
+        <div class="stat">
+          <span class="stat__num" data-count="3" data-count-suffix="개국">0</span>
+          <span class="stat__label">다녀온 나라</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="8" data-count-suffix="곳">0</span>
+          <span class="stat__label">다녀온 도시</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="4" data-count-suffix="개">0</span>
+          <span class="stat__label">직접 만든 게임</span>
+        </div>
+        <div class="stat">
+          <span class="stat__num" data-count="3" data-count-suffix="가지">0</span>
+          <span class="stat__label">좋아하는 음식</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll" aria-hidden="true">
+      <span>SCROLL</span>
+      <i></i>
+    </div>
+  </section>
+
+  <!-- BODY -->
+  <div class="container container--wide page">
+    <div class="page-grid">
+
+      <!-- MAIN — 본문 내용 -->
+      <main id="main">
+
+        <!-- ---------- 바로가기 ---------- -->
+        <section class="section" id="hub" aria-labelledby="hub-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">Directory</p>
+              <h2 id="hub-h">바로가기</h2>
+            </div>
+            <span class="chip"><span class="chip__dot"></span>7 pages</span>
+          </div>
+
+          <!-- 각 페이지로 가는 카드 -->
+          <ul class="hub-grid reveal-stagger">
+            <li>
+              <a class="hub-card tilt" href="myProfile.html" data-tilt data-cursor-hover>
+                <span class="hub-card__idx">01</span>
+                <span class="hub-card__icon" aria-hidden="true">🪪</span>
+                <h3 class="hub-card__title">My Profile</h3>
+                <p class="hub-card__desc">좋아하는 음식, 올해 하려는 일, 나를 설명하는 단어들.</p>
+                <span class="hub-card__go">나에 대해 <span aria-hidden="true">→</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="hub-card tilt" href="myHoliday.html" data-tilt data-cursor-hover>
+                <span class="hub-card__idx">02</span>
+                <span class="hub-card__icon" aria-hidden="true">🛋️</span>
+                <h3 class="hub-card__title">My Holiday</h3>
+                <p class="hub-card__desc">늦잠부터 밤 산책까지, 아무것도 안 하는 하루의 타임라인.</p>
+                <span class="hub-card__go">쉬는 날 <span aria-hidden="true">→</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="hub-card tilt" href="myClass.html" data-tilt data-cursor-hover>
+                <span class="hub-card__idx">03</span>
+                <span class="hub-card__icon" aria-hidden="true">🗓️</span>
+                <h3 class="hub-card__title">My Class</h3>
+                <p class="hub-card__desc">요일별로 정리한 주간 시간표. 점심시간까지 빠짐없이 들어 있습니다.</p>
+                <span class="hub-card__go">주간 시간표 <span aria-hidden="true">→</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="hub-card tilt" href="myTrip.html" data-tilt data-cursor-hover>
+                <span class="hub-card__idx">04</span>
+                <span class="hub-card__icon" aria-hidden="true">🗺️</span>
+                <h3 class="hub-card__title">My Trip</h3>
+                <p class="hub-card__desc">직접 그린 동아시아 지도 위에 여행 경로를 애니메이션으로 띄웠습니다.</p>
+                <span class="hub-card__go">여행 지도 <span aria-hidden="true">→</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="hub-card tilt" href="playground.html" data-tilt data-cursor-hover>
+                <span class="hub-card__idx">05</span>
+                <span class="hub-card__icon" aria-hidden="true">🍉</span>
+                <h3 class="hub-card__title">Playground</h3>
+                <p class="hub-card__desc">수박게임과 미니게임 세 가지. 심심할 때 들르는 놀이터입니다.</p>
+                <span class="hub-card__go">게임 4종 <span aria-hidden="true">→</span></span>
+              </a>
+            </li>
+            <li>
+              <a class="hub-card tilt" href="signUp.html" data-tilt data-cursor-hover>
+                <span class="hub-card__idx">06</span>
+                <span class="hub-card__icon" aria-hidden="true">✍️</span>
+                <h3 class="hub-card__title">Sign Up</h3>
+                <p class="hub-card__desc">회원가입 폼. 다 채우면 회원 카드가 한 장 나옵니다.</p>
+                <span class="hub-card__go">회원가입 <span aria-hidden="true">→</span></span>
+              </a>
+            </li>
+          </ul>
+
+          <p class="hint reveal" style="margin-top:1.1rem">
+            가입을 마치면 <a href="signUpResult.html">회원 카드</a>가 자동으로 열립니다.
+          </p>
+        </section>
+
+        <!-- ---------- 요즘 ---------- -->
+        <section class="section" aria-labelledby="now-h">
+          <div class="section__head reveal">
+            <div>
+              <p class="eyebrow">Now</p>
+              <h2 id="now-h">요즘 하는 것들</h2>
+            </div>
+            <span class="chip"><span class="chip__dot"></span>2026 여름</span>
+          </div>
+
+          <div class="card card--gradient card--pad-lg reveal">
+            <p class="lead" style="margin-bottom:1.4rem">
+              대단한 걸 하고 있지는 않습니다. 그래도 <mark class="warm">매일 조금씩은</mark> 뭔가 하고 있습니다.
+            </p>
+
+            <ul class="list-fancy">
+              <li><strong class="todo-name">오픽</strong> — AL을 목표로 하고 있습니다. 시험 날짜는 아직 안 잡았습니다.</li>
+              <li><strong class="todo-name">취업 준비</strong> — 이력서를 고쳤다가 되돌렸다가 하는 중입니다.</li>
+              <li><strong class="todo-name">이 홈페이지</strong> — 심심할 때마다 한 칸씩 손봅니다. 끝날 기미는 없습니다.</li>
+              <li><strong class="todo-name">수박게임</strong> — 제가 만들어 놓고 제 최고 점수를 못 넘기고 있습니다.</li>
+            </ul>
+          </div>
+        </section>
+      </main>
+
+      <!-- ASIDE — 사이드바 -->
+      <aside class="sidebar" aria-label="사이드바">
+
+        <!-- ---------- 실시간 날씨 ---------- -->
+        <section class="widget" aria-labelledby="weather-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="weather-h">
+              <span aria-hidden="true">🌤️</span> 실시간 날씨
+            </h2>
+            <button class="btn btn--ghost btn--sm" type="button" data-weather-refresh aria-label="날씨 새로고침">↻</button>
+          </div>
+
+          <div class="field">
+            <label for="city-select">도시 선택</label>
+            <!-- realtimeInfo.js 가 CITIES 데이터로 <option> 을 채웁니다 -->
+            <select id="city-select" aria-describedby="weather-hint"></select>
+          </div>
+
+          <!-- 날씨 결과가 innerHTML 로 그려지는 영역 -->
+          <div class="weather-box" id="weather-box"></div>
+
+          <p class="hint" id="weather-hint">
+            Open-Meteo 무료 API · <span data-weather-stamp>—</span>
+          </p>
+        </section>
+
+        <!-- ---------- 올해의 진행률 ---------- -->
+        <section class="widget" aria-labelledby="goal-h">
+          <div class="widget__head">
+            <h2 class="widget__title" id="goal-h">
+              <span aria-hidden="true">🎯</span> 2026 진행률
+            </h2>
+            <span class="chip" data-goal-pct>0%</span>
+          </div>
+
+          <div class="stack-s">
+            <div>
+              <div class="bar-label">
+                <span>OPIc 취득</span><span class="muted">IH 목표</span>
+              </div>
+              <div class="bar" role="progressbar" aria-label="OPIc 취득 진행률"
+                   aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"><span class="bar__fill" style="width:70%"></span></div>
+            </div>
+            <div>
+              <div class="bar-label">
+                <span>포트폴리오 정리</span><span class="muted">진행 중</span>
+              </div>
+              <div class="bar" role="progressbar" aria-label="포트폴리오 정리 진행률"
+                   aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"><span class="bar__fill" style="width:55%"></span></div>
+            </div>
+            <div>
+              <div class="bar-label">
+                <span>취업</span><span class="muted">준비 중</span>
+              </div>
+              <div class="bar" role="progressbar" aria-label="취업 진행률"
+                   aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"><span class="bar__fill" style="width:40%"></span></div>
+            </div>
+          </div>
+
+          <p class="hint">
+            전체 목표는 <a href="myProfile.html">Profile</a> 페이지에서 볼 수 있습니다.
+          </p>
+        </section>
+
+        <!-- ---------- 안내 ---------- -->
+        <div class="note note--info">
+          <span class="note__icon" aria-hidden="true">💡</span>
+          <span>
+            <strong>심심하시면</strong><br>
+            <a href="playground.html">놀이터</a>에 직접 만든 게임 네 개가 있습니다.
+            수박게임은 생각보다 오래 붙잡게 됩니다.
+          </span>
+        </div>
+      </aside>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="site-footer">
+    <div class="container container--wide site-footer__inner">
+      <span>© 2026 이헌준</span>
+      <span class="mono">홈</span>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <!--
+     Three.js (CDN) — 배경 3D 용. 파일이 커서 async 로 받는다.
+     기다리지 않고 넘어가니 글씨와 버튼이 먼저 뜨고, 그 사이 hero3d.js 가
+     가벼운 2D 배경을 깔아 둔다. 다 받아지면 조용히 3D 로 갈아탄다.
+  -->
+  <script id="three-cdn" async
+          src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
+  <script src="../script/core/store.js"></script>
+  <script src="../script/core/ui.js"></script>
+  <script src="../script/hero3d.js"></script>
+  <script type="module" src="../script/realtimeInfo.js"></script>
+
+  <script>
+    /* 목표 막대 세 개의 평균을 위쪽 칩에 적어 준다 */
+    (function () {
+      var fills = document.querySelectorAll(".sidebar .bar__fill");
+      var pct = document.querySelector("[data-goal-pct]");
+      if (fills.length && pct) {
+        var sum = 0;
+        for (var i = 0; i < fills.length; i++) sum += parseFloat(fills[i].style.width) || 0;
+        pct.textContent = Math.round(sum / fills.length) + "%";
+      }
+    })();
+
+    /* 날씨 위젯이 끝내 안 켜졌을 때의 대비.
+
+       날씨는 인터넷에서 값을 받아 오는데, 파일을 그냥 더블클릭해서 열면
+       브라우저가 그 통신을 막아 버린다. 그러면 위젯이 아무 말 없이
+       빈칸으로 남는다. 잠깐 기다려 보고도 비어 있으면 사정을 적어 둔다. */
+    window.addEventListener("load", function () {
+      setTimeout(function () {
+        var select = document.getElementById("city-select");
+        var box = document.getElementById("weather-box");
+        if (!select || !box || select.options.length) return;
+
+        select.innerHTML = '<option>지금은 쉬는 중</option>';
+        select.disabled = true;
+        box.innerHTML =
+          '<p class="muted" style="align-self:center; text-align:center; font-size:var(--fs-sm); line-height:1.6">' +
+          '지금은 날씨를 못 받아 오고 있습니다.<br>' +
+          '이 페이지를 웹 주소로 열면 다시 나옵니다.' +
+          '</p>';
+        var stamp = document.querySelector("[data-weather-stamp]");
+        if (stamp) stamp.textContent = "연결 안 됨";
+      }, 1200);
+    });
+  </script>
+</body>
+</html>
